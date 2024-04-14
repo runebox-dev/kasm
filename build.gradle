@@ -1,0 +1,40 @@
+import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
+
+plugins {
+    alias(libs.plugins.kotlin.jvm)
+    alias(libs.plugins.java.cross.compile)
+    id "com.netflix.nebula.project" version "10.1.5"
+    id "com.netflix.nebula.maven-publish" version "21.0.0"
+    id "com.netflix.nebula.release" version "19.0.6"
+}
+
+wrapper {
+    gradleVersion = "8.6"
+}
+
+allprojects {
+    group = "io.runebox.kasm"
+    version = "0.1.0"
+
+    repositories {
+        mavenCentral()
+        mavenLocal()
+    }
+}
+
+subprojects {
+    compileKotlin {
+        kotlin {
+            compilerOptions {
+                languageVersion.set(KotlinVersion.KOTLIN_2_0)
+                apiVersion.set(KotlinVersion.KOTLIN_2_0)
+            }
+
+            jvmToolchain {
+                languageVersion.set(JavaLanguageVersion.of(17))
+                vendor.set(JvmVendorSpec.JETBRAINS)
+                explicitApi()
+            }
+        }
+    }
+}

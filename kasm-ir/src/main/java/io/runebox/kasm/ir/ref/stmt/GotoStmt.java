@@ -1,0 +1,54 @@
+package io.runebox.kasm.ir.ref.stmt;
+
+import io.runebox.kasm.ir.util.RCell;
+import io.runebox.kasm.ir.util.RWCell;
+import io.runebox.kasm.ir.ref.Expression;
+import io.runebox.kasm.ir.ref.Statement;
+
+import java.util.Set;
+
+/**
+ * Unconditionally branch to another statement.
+ */
+public class GotoStmt implements BranchStmt {
+    /**
+     * Branch to this statement.
+     */
+    private Statement target;
+
+    public GotoStmt(Statement target) {
+        this.target = target;
+    }
+
+    public Statement getTarget() {
+        return target;
+    }
+
+    public void setTarget(Statement target) {
+        this.target = target;
+    }
+
+    public RWCell<Statement> getTargetCell() {
+        return RWCell.of(this::getTarget, this::setTarget, Statement.class);
+    }
+
+    @Override
+    public Set<RCell<Expression>> getReadValueCells() {
+        return Set.of();
+    }
+
+    @Override
+    public Set<Statement> getBranchTargets() {
+        return Set.of(getTarget());
+    }
+
+    @Override
+    public Set<RWCell<Statement>> getBranchTargetsCells() {
+        return Set.of(getTargetCell());
+    }
+
+    @Override
+    public boolean continuesExecution() {
+        return false;
+    }
+}

@@ -1,0 +1,19 @@
+[versions]
+kotlin = "2.0.0-RC1"
+gradle = "8.6"
+jvm = "17"
+asm = "9.2"
+
+[libraries]
+kotlin-stdlib = { module = "org.jetbrains.kotlin:kotlin-stdlib", version.ref = "kotlin" }
+asm = { module = "org.ow2.asm:asm", version.ref = "asm" }
+asm-commons = { module = "org.ow2.asm:asm-commons", version.ref = "asm" }
+asm-util = { module = "org.ow2.asm:asm-util", version.ref = "asm" }
+asm-tree = { module = "org.ow2.asm:asm-tree", version.ref = "asm" }
+
+[bundles]
+asm-all = ["asm", "asm-commons", "asm-util", "asm-tree"]
+
+[plugins]
+kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
+java-cross-compile = { id = "nebula.java-cross-compile", version = "6.2.0" }
