@@ -3,9 +3,9 @@ import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
 plugins {
     alias(libs.plugins.kotlin.jvm)
     alias(libs.plugins.java.cross.compile)
-    id "com.netflix.nebula.project" version "10.1.5"
-    id "com.netflix.nebula.maven-publish" version "21.0.0"
-    id "com.netflix.nebula.release" version "19.0.6"
+    alias(libs.plugins.nebula.project)
+    alias(libs.plugins.nebula.maven.publish)
+    alias(libs.plugins.nebula.release)
 }
 
 wrapper {
@@ -14,7 +14,6 @@ wrapper {
 
 allprojects {
     group = "io.runebox.kasm"
-    version = "0.1.0"
 
     repositories {
         mavenCentral()
