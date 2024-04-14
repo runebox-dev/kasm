@@ -21,6 +21,8 @@ allprojects {
     }
 }
 
+tasks.release.dependsOn tasks.publish
+
 subprojects {
     compileKotlin {
         kotlin {
